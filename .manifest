@@ -1,0 +1,7 @@
+{
+	"name": "Spider Chart",
+	"platforms": ["web"],
+	"apps": {"index": "index"},
+	"minify": true,
+	"web-prefix": true
+}

@@ -13,6 +13,17 @@ Item {
 			border.width: 1;
 			border.color: "#DDD";
 
+			WebLink {
+				id: download;
+				x: 4;
+				y: 100% + 3;
+				Text {
+					text: "DOWNLOAD";
+					color: "#1976D2";
+					font.pixelSize: 14;
+				}
+			}
+
 			Canvas {
 				id: canvas;
 				property Color webColor: colorInput.color;
@@ -119,6 +130,8 @@ Item {
 					function drawOne() {
 						var e = self.drawMap.shift()
 						if (!e) {
+							self.download.element.dom.download = (self.caption ? self.caption : "awesome_chart") + ".png";
+							self.download.href = self.element.dom.toDataURL("image/png");
 							return
 						}
 
@@ -289,7 +302,7 @@ Item {
 			WebItem {
 				width: 120;
 				x: 68;
-				height: 48;
+				height: 44;
 				radius: 12;
 				color: !hover ? "#F6F6EE" : "#EEEEDD";
 				TextMixin { text: "ADD"; color: "#558B2F"; }

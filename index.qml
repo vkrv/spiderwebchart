@@ -57,14 +57,11 @@ Item {
 
 					this.clearAll();
 
-					var w = this.width
-					var h = this.height
-					var levels = this.levels
-
-					var ctx = this.ctx
-
+					var w2 = this.width / 2, h2 = this.height / 2
+					var r = h2 * 0.85
 					var rads = (Math.PI * 2) / corners.length
-					var r = h * 0.45
+					var levels = this.levels
+					var ctx = this.ctx
 
 					if (this.caption) {
 						ctx.font = "20px Roboto"
@@ -83,8 +80,8 @@ Item {
 					function getCoords(line, level) {
 						var angle = rads * line + Math.PI * 1.5
 						var rr = r - r * (level / levels)
-						var xc = Math.cos(angle) * rr + w / 2
-						var yc = Math.sin(angle) * rr + h / 2
+						var xc = Math.cos(angle) * rr + w2
+						var yc = Math.sin(angle) * rr + h2
 						return { x: xc, y: yc }
 					}
 
@@ -99,13 +96,13 @@ Item {
 							this.drawMap.push({type: "line", x: res.x, y: res.y})
 
  							if (l === 0 && i !== corners.length) {
- 								var w2 = w / 2, h2 = h / 2, x = Math.round(res.x), y = Math.round(res.y)
+ 								var x = Math.round(res.x), y = Math.round(res.y)
 								this.drawMap.push({type: "line", x: w2, y: h2})
 
 								this.drawMap.push({
 									type: "text",
 									align: x < w2 ? 'right' : (x > w2 ? 'left' : 'center'),
-									x: x,
+									x: res.x,
 									y: y < h2 ? y - 2 : (y > h2 ? y + 20 : y + 5),
 									text: corners[i].name
 									})
